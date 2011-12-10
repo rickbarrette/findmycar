@@ -274,6 +274,15 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 		//Populate the pager
 		mPager = (CustomViewPager) findViewById(R.id.pager);
 		
+		/*
+		 * this hack is for displaying nav
+		 * empty msg
+		 */
+		mPager.setCurrentItem(0);
+		mPager.setCurrentItem(2);
+		mPager.setCurrentItem(1);
+		
+		
 		if(mPager != null)
 			mPager.setAdapter(new TitledFragmentAdapter(this.getSupportFragmentManager(), mFragments, titles, icons));
 		

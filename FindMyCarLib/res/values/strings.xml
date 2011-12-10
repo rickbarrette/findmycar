@@ -108,5 +108,7 @@
     <string name="saved">Saved</string>
     <string name="map">Map</string>
     <string name="settings">Settings</string>
+    <string name="directions_empty_msg">Your directions will appear here. Please select the Navigation Icon in the lower right of the map to use navigation.</string>
+    <string name="nav_only_in_full">The Navigation feature is used to display walking directions to your car. This fetaure is only available in the full version of Find My Car. Please visit the Android Market to purchase Find My Car. </string>
 
 </resources>

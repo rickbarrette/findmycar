@@ -14,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.TwentyCodes.android.FindMyCarLib.DirectionsAdapter;
+import com.TwentyCodes.android.FindMyCarLib.Main;
+import com.TwentyCodes.android.FindMyCarLib.R;
 import com.TwentyCodes.android.FindMyCarLib.UI.DirectionsOverlay;
 import com.google.android.maps.GeoPoint;
 
@@ -37,6 +39,20 @@ public class DirectionsListFragment extends ListFragment {
 	 */
 	public DirectionsListFragment() {
 		super();
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * @see android.support.v4.app.Fragment#onStart()
+	 */
+	@Override
+	public void onStart() {
+		this.setListShown(true);
+		if(Main.isFull)
+			this.setEmptyText(getActivity().getText(R.string.directions_empty_msg));
+		else
+			this.setEmptyText(getActivity().getText(R.string.nav_only_in_full));
+		super.onStart();
 	}
 
 	/**

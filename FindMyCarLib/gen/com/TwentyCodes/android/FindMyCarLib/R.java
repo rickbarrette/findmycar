@@ -325,6 +325,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static int description=0x7f050007;
         public static int directions=0x7f05004b;
         public static int directions_description=0x7f050059;
+        public static int directions_empty_msg=0x7f050073;
         public static int distance=0x7f05002a;
         public static int eula=0x7f050068;
         public static int eulaagreement=0x7f050069;
@@ -352,6 +353,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static int measurement_unit_dialog=0x7f050017;
         public static int minutes=0x7f050031;
         public static int my_location=0x7f05001e;
+        public static int nav_only_in_full=0x7f050074;
         public static int new_button=0x7f050060;
         public static int no=0x7f050027;
         public static int no_gps_signal=0x7f050015;
