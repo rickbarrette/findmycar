@@ -151,27 +151,27 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 		// UNUSED
 	}
 	
-	/**
-	 * displays lic dialog and welcome to find my car dialog
-	 */
-	public void eulaAlert (){
-		new AlertDialog.Builder(this)
-		.setTitle(R.string.eula)
-		.setMessage(R.string.eulaagreement).setCancelable(false)
-		.setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				mSettings.edit().putBoolean(Settings.ACCEPTED, true).commit();
-				update();
-			}
-		})
-		.setNegativeButton(R.string.decline, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				finish();
-			}
-		}
-		)
-		.show();
-	}
+//	/**
+//	 * displays lic dialog and welcome to find my car dialog
+//	 */
+//	public void eulaAlert (){
+//		new AlertDialog.Builder(this)
+//		.setTitle(R.string.eula)
+//		.setMessage(R.string.eulaagreement).setCancelable(false)
+//		.setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+//			public void onClick(DialogInterface dialog, int id) {
+//				mSettings.edit().putBoolean(Settings.ACCEPTED, true).commit();
+//				update();
+//			}
+//		})
+//		.setNegativeButton(R.string.decline, new DialogInterface.OnClickListener() {
+//			public void onClick(DialogInterface dialog, int id) {
+//				finish();
+//			}
+//		}
+//		)
+//		.show();
+//	}
 	
 	/**
 	 * (non-Javadoc)
@@ -451,10 +451,13 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 	      public void run() {
 	        removeSplashScreen();
 	        
-	      //loads first boot dialog if this is the first boot
-			if (! mSettings.getBoolean(Settings.ACCEPTED, false) || Debug.FORCE_FIRSTBOOT_DIALOG)
-				eulaAlert();
-			else
+	        /*
+	         * uncomment the following to display the eula
+	         */
+//	      //loads first boot dialog if this is the first boot
+//			if (! mSettings.getBoolean(Settings.ACCEPTED, false) || Debug.FORCE_FIRSTBOOT_DIALOG)
+//				eulaAlert();
+//			else
 				update();
 	      }
 	    }, 2000);
