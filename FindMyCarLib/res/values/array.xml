@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<string-array name="units">
+
+<item>Standard</item>
+<item>Metric</item>
+</string-array>
+<string-array name="layers"><item>Satellite View</item>
+<item>Map View</item>
+</string-array>
+<string-array name="notification_colors">
+<item>Black</item>
+<item>White</item>
+</string-array><string-array name="compass_options">
+    
+    <item>Large</item>
+    <item>Medium</item>
+    <item>Small</item>
+</string-array>
+</resources>

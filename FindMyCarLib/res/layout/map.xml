@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#505050"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        layout="@layout/distancebar" />
+
+    <!-- ricky beta release	0rKmsWMM0D-IRAEgcSZEqwZCs_8AUwxjYjj0bnA -->
+    <!-- ricky				0rKmsWMM0D-KC9KXr1WbA5aEb-2ozQ0SHTvV46g -->
+    <!-- TWENTYCODES 		0rKmsWMM0D-K15bEM_kwabPbNhsn4dp4rcq2q5Q -->
+
+<com.TwentyCodes.android.location.MapView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/mapview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/buttons"
+        android:layout_below="@id/table"
+        android:apiKey="0rKmsWMM0D-KC9KXr1WbA5aEb-2ozQ0SHTvV46g"
+        android:clickable="true" />
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/mapview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/table" />
+
+    <TextView
+        android:id="@+id/tvAccuracy2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/table"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="10dip"
+        android:enabled="false"
+        android:text="0"
+        android:textColor="#F00000"
+        android:textSize="26dip"
+        android:textStyle="bold" />
+
+    <include
+        android:id="@id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        layout="@layout/map_buttons" />
+
+</RelativeLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/distance_background"
+    android:stretchColumns="0" >
+
+    <!-- distance display -->
+
+    <TableRow android:layout_marginBottom="2dip" >
+
+        <TextView
+            android:id="@+id/tvDistance"
+            android:layout_column="0"
+            android:enabled="false"
+            android:gravity="left"
+            android:text="@string/distance"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvDistance2"
+            android:layout_column="1"
+            android:layout_marginRight="3dip"
+            android:enabled="false"
+            android:gravity="right"
+            android:text="0"
+            android:textColor="#000000"
+            android:textSize="26sp" />
+    </TableRow>
+    
+        <!-- accuracy display -->
+        <!-- <TableRow android:background="#505050"> -->
+        <!-- <TextView android:layout_column="0" -->
+        <!-- android:id="@+id/tvAccuracy" -->
+        <!-- android:text="@string/gps_accuracy" -->
+        <!-- android:enabled="false" -->
+        <!-- android:textSize="22sp" -->
+        <!-- android:gravity="left" -->
+        <!-- android:textColor="#FFFFFF" -->
+        <!-- android:textStyle="bold"/> -->
+        <!-- <TextView android:layout_column="1" -->
+        <!-- android:id="@+id/tvAccuracy2" -->
+        <!-- android:gravity="right" -->
+        <!-- android:text="0" -->
+        <!-- android:enabled="false" -->
+        <!-- android:textColor="#FFFFFF" -->
+        <!-- android:textSize="26sp"/> -->
+        <!-- </TableRow> -->
+
+</TableLayout>

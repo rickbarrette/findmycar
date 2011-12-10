@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- <item -->
+    <!-- android:id="@+id/my_location" -->
+    <!-- android:icon="@drawable/my_location_action_bar" -->
+    <!-- android:showAsAction="ifRoom|withText" -->
+    <!-- android:title="@string/my_location"/> -->
+
+
+    <!-- <item -->
+    <!-- android:id="@+id/mark_my_location" -->
+    <!-- android:icon="@drawable/mark_my_location_action_bar" -->
+    <!-- android:showAsAction="ifRoom|withText" -->
+    <!-- android:title="@string/mark_car"/> -->
+
+
+    <!-- <item -->
+    <!-- android:id="@+id/show_both" -->
+    <!-- android:icon="@drawable/map_action_bar" -->
+    <!-- android:showAsAction="ifRoom|withText" -->
+    <!-- android:title="@string/show_both"/> -->
+
+
+    <!-- <item -->
+    <!-- android:id="@+id/parking_timer" -->
+    <!-- android:icon="@drawable/time_action_bar" -->
+    <!-- android:showAsAction="ifRoom|withText" -->
+    <!-- android:title="@string/parking_timer"/> -->
+
+
+    <!-- <item -->
+    <!-- android:id="@+id/directions" -->
+    <!-- android:icon="@drawable/nav_action_bar" -->
+    <!-- android:showAsAction="ifRoom|withText" -->
+    <!-- android:title="@string/directions"/> -->
+
+    <item
+        android:id="@+id/map_mode"
+        android:title="@string/map_mode"/>
+
+    <item
+        android:id="@+id/delete_car"
+        android:title="@string/delete_car"/>
+
+    <item
+        android:id="@+id/settings"
+        android:title="@string/settings"/>
+
+</menu>

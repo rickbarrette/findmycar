@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <TableLayout
+        android:id="@+id/pickerlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="7dip"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:stretchColumns="0,2" >
+
+        <TableRow >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:text="@string/hours"
+                android:textSize="15dip"
+                android:textStyle="bold" />
+            <!-- This time picker picks the hour and minutes of the timer -->
+
+            <TimePicker
+                android:id="@+id/tpParkingTimerTimePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="left"
+                android:text="@string/minutes"
+                android:textSize="15dip"
+                android:textStyle="bold" />
+        </TableRow>
+    </TableLayout>
+
+    <RelativeLayout
+        android:id="@+id/notiyfyme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pickerlayout" >
+
+        <!-- this checkbox is used to enable/disable the notification alarm -->
+
+        <CheckBox
+            android:id="@+id/chNotify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="7dip"
+            android:layout_marginTop="10dip"
+            android:paddingLeft="7px" />
+
+        <!-- textview to hold text after the checkbox "Notify me" -->
+
+        <TextView
+            android:id="@+id/tvNotify1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25px"
+            android:layout_toRightOf="@id/chNotify"
+            android:gravity="center_vertical"
+            android:text="@string/notify_me"
+            android:textStyle="bold" />
+        <!-- this text field will hold the value for the notifcation alarm. -->
+
+        <EditText
+            android:id="@+id/etNotify"
+            android:layout_width="50dip"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/chNotify"
+            android:layout_marginLeft="7dip"
+            android:layout_toRightOf="@id/tvNotify1"
+            android:gravity="right|center_horizontal"
+            android:phoneNumber="true"
+            android:singleLine="true"
+            android:text="5" />
+        <!-- textview for "minutes after alarm" -->
+
+        <TextView
+            android:id="@+id/tvBefore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dip"
+            android:layout_marginTop="17px"
+            android:layout_toRightOf="@id/etNotify"
+            android:text="@string/before"
+            android:textStyle="bold" />
+        <!-- this layout holds the two start and stop timer buttons -->
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notiyfyme"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/distance_background"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btSetTimer"
+            android:layout_width="130px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/setTimer"
+            android:textSize="14dip" />
+
+        <Button
+            android:id="@+id/btRemoveTimer"
+            android:layout_width="130px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/removeTimer"
+            android:textSize="14dip" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/fmc_options" >
+
+        <ListPreference
+            android:dialogTitle="@string/measurement_unit"
+            android:entries="@array/units"
+            android:entryValues="@array/units"
+            android:key="measurement_unit"
+            android:title="@string/measurement_unit" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="stay_awake"
+            android:summary="@string/prevent_phone_from_sleeping"
+            android:title="@string/stay_awake" />
+
+        <ListPreference
+            android:dialogTitle="@string/compass_optoions"
+            android:entries="@array/compass_options"
+            android:entryValues="@array/compass_options"
+            android:key="compass_option"
+            android:title="@string/compass_optoions" />
+    </PreferenceCategory>
+
+    <!-- <PreferenceCategory android:title="@string/parking_timer_options" > -->
+
+
+    <!-- <CheckBoxPreference -->
+    <!-- android:defaultValue="false" -->
+    <!-- android:enabled="false" -->
+    <!-- android:key="parking_timer_ongoing_notification_isenabled" -->
+    <!-- android:title="@string/ongoing_notification" /> -->
+
+
+    <!-- <EditTextPreference -->
+    <!-- android:defaultValue="60" -->
+    <!-- android:dependency="parking_timer_ongoing_notification_isenabled" -->
+    <!-- android:key="parking_timer_update_interval" -->
+    <!-- android:summary="@string/update_interval_summary" -->
+    <!-- android:title="@string/update_interval" /> -->
+
+
+    <!-- <ListPreference -->
+    <!-- android:dependency="parking_timer_ongoing_notification_isenabled" -->
+    <!-- android:dialogTitle="@string/notification_color_title" -->
+    <!-- android:entries="@array/notification_colors" -->
+    <!-- android:entryValues="@array/notification_colors" -->
+    <!-- android:key="parking_timer_notification_color" -->
+    <!-- android:title="@string/notification_color_title" /> -->
+
+
+    <!-- the following is here just incase -->
+
+
+    <!-- <CheckBoxPreference -->
+    <!-- android:title="Notify Me" -->
+    <!-- android:key="parking_timer_notifyme_notification_isenabled" -->
+    <!-- android:summary="Notifys you before your parking timer runs out" -->
+    <!-- /> -->
+    <!--  -->
+    <!-- <EditTextPreference -->
+    <!-- android:summary="Minutes" -->
+    <!-- android:defaultValue="5" -->
+    <!-- android:key="parking_timer_notifyme_time" -->
+    <!-- android:title="Notify Me" -->
+    <!-- android:dependency="parking_timer_notifyme_notification_isenabled" -->
+    <!-- /> -->
+
+
+    <!-- </PreferenceCategory> -->
+
+    <PreferenceCategory android:title="About" >
+
+        <!-- this will display the welcome message that explains how the application works -->
+
+        <com.TwentyCodes.android.FindMyCarLib.UI.TextViewPreference android:title="@string/welcome_msg" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/version_info" >
+
+        <com.TwentyCodes.android.exception.VersionInformationPreference />
+    </PreferenceCategory>
+
+</PreferenceScreen>

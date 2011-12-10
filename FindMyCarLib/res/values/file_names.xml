@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="first_boot">FirstBoot.txt</string>
+<string name="lat">AppLat.txt</string>
+<string name="lon">AppLon.txt</string>
+<string name="stay_awake_pref">StayAwake.txt</string>
+<string name="unit_pref">AppUnit.txt</string>
+
+</resources>
