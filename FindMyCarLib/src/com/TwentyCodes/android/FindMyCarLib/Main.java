@@ -94,7 +94,7 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 	            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 	                public void onClick(DialogInterface dialog, int id) {
 	                    Intent intent = new Intent(Intent.ACTION_VIEW);
-	                    intent.setData(Uri.parse("market://search?q=pname:com.TwentyCodes.android.FindMyCarFull"));
+	                    intent.setData(Uri.parse("market://details?id=com.TwentyCodes.android.FindMyCarFull"));
 	                    context.startActivity(intent);
 	            	}
 	            })
