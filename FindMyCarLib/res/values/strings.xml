@@ -7,7 +7,7 @@
     <string name="ok">Okay</string>
     <string name="help">Help</string>
     <string name="welcome">Welcome to Find My Car!</string>
-    <string name="welcome_msg">Find My Car will help you find your car no matter where you are. Just select the Mark Car button in the lower left to mark where you car is. The compass in the upper left will point you to your car while the Distance shows you how far you are. Use the menu key to change features like layers and measurement units. If you like our work send us an email or donate at http://TwentyCodes.com. Thanks and Enjoy!</string>
+    <string name="welcome_msg">Find My Car will help you find your car no matter where you are. Just hit the button with the man holding a flag to mark your car. Swipe the bar at the top left and right to access Navigation and Notes. If you enjoy our work or have any questions feel free to email us at TwentyCodes@gmail.com. Enjoy!</string>
     <string name="no_gps_signal">Sorry but you don\'t have a proper GPS signal yet. Please try again in a few moments.</string>
     <string name="mark_car_warning">Would you like to remove your existing car and notes to create a new one?</string>
     <string name="measurement_unit_dialog">Select A Measurement Unit</string>
