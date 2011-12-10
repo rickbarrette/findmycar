@@ -1,0 +1,5 @@
+fixes: 195
+time .14
+
+added menu item per Ricky's suggestion in code. needing another xml file for one line of code is not necessary.
+tested in Full and Lite
