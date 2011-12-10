@@ -129,7 +129,8 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 				if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
 					enableGPSdialog(Main.this);
 				else
-					mMap.setGPSDialogEnabled(true);
+					if(mMap != null)
+						mMap.setGPSDialogEnabled(true);
 				
 				/*
 				 * the map is no longer needed, clear it from memory
