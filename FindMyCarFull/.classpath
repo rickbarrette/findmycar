@@ -10,6 +10,6 @@
 			<attribute name="javadoc_location" value="file:/home/ricky/documentation/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/app/android-sdk-linux_86/extras/android-support-v4-r4-googlemaps.jar"/>
+	<classpathentry kind="lib" path="/LocationLib/lib/android-support-v4-r6-googlemaps.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

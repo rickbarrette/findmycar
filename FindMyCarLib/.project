@@ -30,16 +30,4 @@
 		<nature>com.android.ide.eclipse.adt.AndroidNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>ExceptionHandlerLib_src</name>
-			<type>2</type>
-			<locationURI>_android_ExceptionHandlerLib_7d68b46a/src</locationURI>
-		</link>
-		<link>
-			<name>LocationLib_src</name>
-			<type>2</type>
-			<locationURI>_android_LocationLib_84551a70/src</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
