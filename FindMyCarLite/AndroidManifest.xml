@@ -13,12 +13,12 @@
         <uses-library android:name="com.google.android.maps" />
 
         <activity
+            android:name="FindMyCar"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:label="@string/app_name_lite"
-            android:name="FindMyCar"
             android:theme="@android:style/Theme.Light.NoTitleBar"
             android:uiOptions="splitActionBarWhenNarrow" >
-            <intent-filter >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -45,16 +45,19 @@
             android:theme="@android:style/Theme.Light" >
         </activity>
         <activity
-            android:configChanges="keyboard|keyboardHidden|orientation"
-            android:name="com.TwentyCodes.android.exception.ExceptionReportActivity" >
+            android:name="com.TwentyCodes.android.exception.ExceptionReportActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation" >
         </activity>
         <activity
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:name="com.google.ads.AdActivity" />
+            android:name="com.google.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
         <activity
             android:name="com.TwentyCodes.android.FindMyCarLib.ParkignTimerActivity"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
+
+        <service android:name="com.TwentyCodes.android.exception.ReportPostingService" >
+        </service>
     </application>
 
     <uses-sdk android:minSdkVersion="4" />
