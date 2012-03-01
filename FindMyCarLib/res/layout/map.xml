@@ -28,7 +28,7 @@
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/mapview"
+        android:id="@id/mapview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/table" />
@@ -42,7 +42,6 @@
         android:layout_marginRight="10dip"
         android:layout_marginTop="10dip"
         android:enabled="false"
-        android:text="0"
         android:textColor="#F00000"
         android:textSize="26dip"
         android:textStyle="bold" />

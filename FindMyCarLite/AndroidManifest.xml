@@ -7,59 +7,6 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <application
-        android:icon="@drawable/icon"
-        android:label="@string/app_name" >
-        <uses-library android:name="com.google.android.maps" />
-
-        <activity
-            android:name="FindMyCar"
-            android:configChanges="keyboard|keyboardHidden|orientation"
-            android:label="@string/app_name_lite"
-            android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:uiOptions="splitActionBarWhenNarrow" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-
-                <action android:name="android.intent.action.PICK" >
-                </action>
-                <action android:name="android.intent.action.PICK_ACTIVITY" >
-                </action>
-            </intent-filter>
-        </activity>
-
-        <receiver
-            android:name="com.TwentyCodes.android.FindMyCarLib.AlarmReceiver"
-            android:process=":parkingtimeralarm" >
-        </receiver>
-
-        <service
-            android:name="com.TwentyCodes.android.FindMyCarLib.ParkingTimerService"
-            android:process=":parkingtimer" >
-        </service>
-
-        <activity
-            android:name="com.TwentyCodes.android.FindMyCarLib.Settings"
-            android:theme="@android:style/Theme.Light" >
-        </activity>
-        <activity
-            android:name="com.TwentyCodes.android.exception.ExceptionReportActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation" >
-        </activity>
-        <activity
-            android:name="com.google.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
-        <activity
-            android:name="com.TwentyCodes.android.FindMyCarLib.ParkignTimerActivity"
-            android:theme="@android:style/Theme.Dialog" >
-        </activity>
-
-        <service android:name="com.TwentyCodes.android.exception.ReportPostingService" >
-        </service>
-    </application>
-
     <uses-sdk android:minSdkVersion="4" />
 
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -76,7 +23,51 @@
     <!-- used to access GPS location, for XPS functionality -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" >
-    </uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name" >
+        <uses-library android:name="com.google.android.maps" />
+
+        <activity
+            android:name="FindMyCar"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:label="@string/app_name_lite"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:uiOptions="splitActionBarWhenNarrow" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="android.intent.action.PICK" />
+                <action android:name="android.intent.action.PICK_ACTIVITY" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name="com.TwentyCodes.android.FindMyCarLib.AlarmReceiver"
+            android:process=":parkingtimeralarm" />
+
+        <service
+            android:name="com.TwentyCodes.android.FindMyCarLib.ParkingTimerService"
+            android:process=":parkingtimer" />
+
+        <activity
+            android:name="com.TwentyCodes.android.FindMyCarLib.Settings"
+            android:theme="@android:style/Theme.Light" />
+        <activity
+            android:name="com.TwentyCodes.android.exception.ExceptionReportActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation" />
+        <activity
+            android:name="com.google.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+        <activity
+            android:name="com.TwentyCodes.android.FindMyCarLib.ParkignTimerActivity"
+            android:theme="@android:style/Theme.Dialog" />
+
+        <service android:name="com.TwentyCodes.android.exception.ReportPostingService" />
+    </application>
 
 </manifest>
