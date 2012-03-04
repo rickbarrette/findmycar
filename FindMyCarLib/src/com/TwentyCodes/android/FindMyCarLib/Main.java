@@ -128,9 +128,9 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 				 */
 				if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
 					enableGPSdialog(Main.this);
-				else
-					if(mMap != null)
-						mMap.setGPSDialogEnabled(true);
+//				else
+//					if(mMap != null)
+//						mMap.setGPSDialogEnabled(true);
 				
 				/*
 				 * the map is no longer needed, clear it from memory
@@ -448,7 +448,7 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 	 * Shows the splash screen over the full Activity
 	 */
 	protected void showSplashScreen() {
-		mMap.setGPSDialogEnabled(false);
+//		mMap.setGPSDialogEnabled(false);
 	    mSplashDialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar_Fullscreen);
 	    mSplashDialog.setContentView(R.layout.powered_by_skyhook);
 	    mSplashDialog.setCancelable(false);
@@ -498,9 +498,10 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 			 */
 			if(mSettings.getInt(Settings.BUILD_NUMBER, 0) < build_number || Debug.FORCE_FIRSTBOOT_DIALOG){
 				displayWelcomeDialog();
-			} else {
-				mMap.setGPSDialogEnabled(true);
-			}
+			} 
+//			else {
+//				mMap.setGPSDialogEnabled(true);
+//			}
 			
 			mSettings.edit().putInt(Settings.BUILD_NUMBER, build_number).commit();
 		} catch (NameNotFoundException e) {
