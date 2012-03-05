@@ -12,7 +12,6 @@
         <TextView
             android:id="@+id/tvDistance"
             android:layout_column="0"
-            android:enabled="false"
             android:gravity="left"
             android:text="@string/distance"
             android:textColor="#000000"
@@ -23,7 +22,6 @@
             android:id="@+id/tvDistance2"
             android:layout_column="1"
             android:layout_marginRight="3dip"
-            android:enabled="false"
             android:gravity="right"
             android:text="0"
             android:textColor="#000000"
