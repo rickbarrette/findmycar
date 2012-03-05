@@ -38,14 +38,14 @@ import com.TwentyCodes.android.FindMyCarLib.Main;
 import com.TwentyCodes.android.FindMyCarLib.ParkignTimerActivity;
 import com.TwentyCodes.android.FindMyCarLib.R;
 import com.TwentyCodes.android.FindMyCarLib.Settings;
-import com.TwentyCodes.android.FindMyCarLib.UI.DirectionsOverlay;
-import com.TwentyCodes.android.FindMyCarLib.UI.DirectionsOverlay.OnDirectionsCompleteListener;
 import com.TwentyCodes.android.FindMyCarLib.UI.FindMyCarOverlay;
-import com.TwentyCodes.android.SkyHook.SkyHoookUserOverlayMapFragment;
+import com.TwentyCodes.android.fragments.SkyHoookUserOverlayMapFragment;
 import com.TwentyCodes.android.location.GeoPointLocationListener;
 import com.TwentyCodes.android.location.GeoUtils;
 import com.TwentyCodes.android.location.MapView;
 import com.TwentyCodes.android.location.MidPoint;
+import com.TwentyCodes.android.overlays.DirectionsOverlay;
+import com.TwentyCodes.android.overlays.DirectionsOverlay.OnDirectionsCompleteListener;
 import com.google.android.maps.GeoPoint;
 
 /**

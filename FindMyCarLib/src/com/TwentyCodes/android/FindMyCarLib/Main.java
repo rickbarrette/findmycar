@@ -29,15 +29,15 @@ import android.util.Log;
 import android.view.View;
 
 import com.TwentyCodes.android.FindMyCarLib.UI.CustomViewPager;
-import com.TwentyCodes.android.FindMyCarLib.UI.DirectionsOverlay;
 import com.TwentyCodes.android.FindMyCarLib.UI.fragments.DirectionsListFragment;
-import com.TwentyCodes.android.FindMyCarLib.UI.fragments.DirectionsListFragment.OnDirectionSelectedListener;
 import com.TwentyCodes.android.FindMyCarLib.UI.fragments.MapFragment;
 import com.TwentyCodes.android.FindMyCarLib.UI.fragments.MapFragment.MapFragmentListener;
 import com.TwentyCodes.android.FindMyCarLib.UI.fragments.NotesFragment;
 import com.TwentyCodes.android.FindMyCarLib.debug.Debug;
 import com.TwentyCodes.android.SkyHook.SkyHookRegistration;
 import com.TwentyCodes.android.exception.ExceptionHandler;
+import com.TwentyCodes.android.location.OnDirectionSelectedListener;
+import com.TwentyCodes.android.overlays.DirectionsOverlay;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 import com.google.android.maps.GeoPoint;
@@ -542,7 +542,7 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 	/**
 	 * called when a direction is selected
 	 * (non-Javadoc)
-	 * @see com.TwentyCodes.android.FindMyCarLib.UI.fragments.DirectionsListFragment.OnDirectionSelectedListener#onDirectionSelected(com.google.android.maps.GeoPoint)
+	 * @see com.TwentyCodes.android.location.DirectionsListFragment.OnDirectionSelectedListener#onDirectionSelected(com.google.android.maps.GeoPoint)
 	 */
 	@Override
 	public void onDirectionSelected(GeoPoint point) {
