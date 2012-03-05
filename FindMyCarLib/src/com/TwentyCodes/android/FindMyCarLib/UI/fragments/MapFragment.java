@@ -58,7 +58,6 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 
 	public boolean hasLeftCar;
 	public boolean isCarFound;
-	// private boolean isShowingBoth = false;
 	private static final int ACCURACY = 0;
 	private static final int DISTANCE = 1;
 	private static final int FOUND_CAR = 2;
@@ -77,45 +76,26 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 	private MapFragmentListener mListener;
 	private SkyHoookUserOverlayMapFragment mMap;
 
+	/**
+	 * This listener will be used to notify it's parent about any changes tot eh map
+	 * @author ricky barrette
+	 */
 	public interface MapFragmentListener {
+		/**
+		 * Called when the user's car is deleted  
+		 * @author ricky barrette
+		 */
 		public void onCarDeleted();
 
+		/**
+		 * Called when there are new directions being displayed to the user
+		 * @param directions
+		 * @author ricky barrette
+		 */
 		public void onDirectionsDisplayed(DirectionsOverlay directions);
 	}
 
-	/**
-	 * returns a string distance that is based on the users measurement unit
-	 * preference
-	 * 
-	 * @param distance
-	 *            in kilometers
-	 * @return string distance
-	 * @author ricky barrette
-	 */
-	public static String distance(double distance) {
-		DecimalFormat threeDForm = new DecimalFormat("#.###");
-		DecimalFormat twoDForm = new DecimalFormat("#.##");
-
-		/*
-		 * if blnUnit is true, the distance computed will be in metric units,
-		 * else, standard units are used meters are used until 1 kilometer is
-		 * reached, then kilometers are used feet are used until 1 mile is
-		 * reached, then miles are used
-		 */
-		if (isMetric) {
-			if (distance < 1) {
-				distance = distance * 1000;
-				return twoDForm.format(distance) + " m";
-			}
-			return threeDForm.format(distance) + " Km";
-		}
-		distance = distance / 1.609344;
-		if (distance < 1) {
-			distance = distance * 5280;
-			return twoDForm.format(distance) + " ft";
-		}
-		return twoDForm.format(distance) + " mi";
-	}
+	
 
 	/**
 	 * pans maps to where the a geopoint is, and if zoomIn is true, zooms in to
@@ -346,19 +326,11 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				mHandler.sendMessage(mHandler.obtainMessage(ACCURACY,
-						distance(accuracy / 1E3)));
+				mHandler.sendMessage(mHandler.obtainMessage(ACCURACY, GeoUtils.distanceToString((accuracy / 1E3), isMetric)));
 
-				// if (point != null)
-				// if(isShowingBoth)
-				// if(GeoUtils.isPointOffMap(mMap.getMap(),point) ||
-				// GeoUtils.isPointOffMap(mMap.getMap(), mCarPoint))
-				// mHandler.sendEmptyMessage(SHOWBOTH);
-				//
 				if (mCarPoint != null && point != null) {
 					double distance = GeoUtils.distanceKm(point, mCarPoint);
-					mHandler.sendMessage(mHandler.obtainMessage(DISTANCE,
-							distance(distance)));
+					mHandler.sendMessage(mHandler.obtainMessage(DISTANCE, GeoUtils.distanceToString(distance, isMetric)));
 
 					// value is set in KM. if user has gone 30 feet from car app
 					// is set to check for arrival
@@ -368,8 +340,7 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 					// if user has gone back into 30 foot radius and has not
 					// found the car and has left the car then notify user of
 					// finding of car
-					if (distance <= 0.009144 && isCarFound == false
-							&& hasLeftCar == true) {
+					if (distance <= 0.009144 && isCarFound == false && hasLeftCar == true) {
 						isCarFound = true;
 
 						mHandler.sendEmptyMessage(FOUND_CAR);
