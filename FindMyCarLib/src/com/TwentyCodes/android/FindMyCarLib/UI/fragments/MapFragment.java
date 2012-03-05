@@ -7,7 +7,6 @@
 package com.TwentyCodes.android.FindMyCarLib.UI.fragments;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
@@ -218,8 +217,7 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 		 * else inform user that they dont have a gps signal
 		 */
 		if (user != null) {
-			mSettings.edit().putInt(Settings.LAT, user.getLatitudeE6())
-					.putInt(Settings.LON, user.getLongitudeE6()).commit();
+			mSettings.edit().putInt(Settings.LAT, user.getLatitudeE6()).putInt(Settings.LON, user.getLongitudeE6()).commit();
 
 			setCar(user);
 
@@ -281,14 +279,12 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 
 		View view = inflater.inflate(R.layout.map, container, false);
 
-		mMap = (SkyHoookUserOverlayMapFragment) getFragmentManager()
-				.findFragmentById(R.id.map_fragment);
+		mMap = (SkyHoookUserOverlayMapFragment) getFragmentManager().findFragmentById(R.id.map_fragment);
 		setUiHandler();
 
 		mAccuracy = (TextView) view.findViewById(R.id.tvAccuracy2);
 		mDistance = (TextView) view.findViewById(R.id.tvDistance2);
-		mSettings = getActivity().getSharedPreferences(Settings.SETTINGS,
-				Context.MODE_WORLD_WRITEABLE);
+		mSettings = getActivity().getSharedPreferences(Settings.SETTINGS, Context.MODE_WORLD_WRITEABLE);
 
 		view.findViewById(R.id.my_location).setOnClickListener(this);
 		view.findViewById(R.id.mark_my_location).setOnClickListener(this);
@@ -323,7 +319,7 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 
 		Log.d(TAG, "FMC onLocationChanged()");
 
-		new Thread(new Runnable() {
+		mHandler.post(new Runnable() {
 			@Override
 			public void run() {
 				mHandler.sendMessage(mHandler.obtainMessage(ACCURACY, GeoUtils.distanceToString((accuracy / 1E3), isMetric)));
@@ -347,7 +343,7 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 					}
 				}
 			}
-		}).start();
+		});
 
 	}
 
@@ -442,8 +438,7 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 						mDirections = null;
 					}
 
-					Vibrator vib = (Vibrator) getActivity().getSystemService(
-							Context.VIBRATOR_SERVICE);
+					Vibrator vib = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 					new AlertDialog.Builder(getActivity())
 							.setTitle(R.string.yay)
 							.setMessage(R.string.found_car)
@@ -490,7 +485,6 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 				if (mMap.getMap() != null) {
 					mMap.getMap().getController().stopAnimation(false);
 					mMap.followUser(false);
-					// isShowingBoth = true;
 					final GeoPoint user = mMap.getUserLocation();
 
 					/*
@@ -529,6 +523,11 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 		mListener = listener;
 	}
 
+	 /**
+	  * Called when a button has been clicked
+	  * (non-Javadoc)
+	  * @see android.view.View.OnClickListener#onClick(android.view.View)
+	  */
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.show_both)
@@ -545,8 +544,7 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 			if (!Main.isFull)
 				Main.featureInFullDialog(getActivity());
 			else
-				getActivity().startActivity(
-						new Intent(getActivity(), ParkignTimerActivity.class));
+				getActivity().startActivity(new Intent(getActivity(), ParkignTimerActivity.class));
 	}
 
 	/**
@@ -556,7 +554,6 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 	 */
 	private void markMyLocation() {
 		mMap.followUser(true);
-		// isShowingBoth = false;
 
 		/*
 		 * if we have a gps signal, then pan to user location and then if there
@@ -569,26 +566,20 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 		 * 
 		 * @author ricky barrette
 		 */
-		if (!panToGeoPoint(mMap.getUserLocation(), true)) {
-			Toast.makeText(getActivity(), R.string.no_gps_signal,
-					Toast.LENGTH_LONG).show();
-		} else {
-			if (mCarPoint != null) {
+		if (myLocation()) 
+			if (mCarPoint != null)
 				markCarDialog();
-			} else {
+			else
 				markCar();
-			}
-		}
 	}
 
 	/**
-	 * pans the map to the user's location
-	 * 
+	 * Trys to pan the map to the users location 
 	 * @author ricky barrette
+	 * @return true if successfull
 	 */
-	private void myLocation() {
+	private boolean myLocation() {
 		mMap.followUser(true);
-		// isShowingBoth = false;
 
 		/*
 		 * if we have a gps signal, then pan to user location else notify user
@@ -601,9 +592,11 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 		 * @author ricky barrette
 		 */
 		if (!panToGeoPoint(mMap.getUserLocation(), true)) {
-			Toast.makeText(getActivity(), R.string.no_gps_signal,
-					Toast.LENGTH_LONG).show();
-		}
+			Toast.makeText(getActivity(), R.string.no_gps_signal, Toast.LENGTH_LONG).show();
+			return true;
+		} else
+			return false;
+		
 	}
 
 	/**
