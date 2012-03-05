@@ -85,6 +85,13 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 		 * @author ricky barrette
 		 */
 		public void onCarDeleted();
+		
+		/**
+		 * Called when a new Car is marked
+		 * @param point
+		 * @author ricky barrette
+		 */
+		public void onCarMarked(GeoPoint point);
 
 		/**
 		 * Called when there are new directions being displayed to the user
@@ -221,7 +228,7 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 
 			setCar(user);
 
-			// TODO get address
+			mListener.onCarMarked(user);
 
 		} else {
 			Toast.makeText(getActivity(), R.string.no_gps_signal,
@@ -593,9 +600,9 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 		 */
 		if (!panToGeoPoint(mMap.getUserLocation(), true)) {
 			Toast.makeText(getActivity(), R.string.no_gps_signal, Toast.LENGTH_LONG).show();
-			return true;
-		} else
 			return false;
+		} else
+			return true;
 		
 	}
 

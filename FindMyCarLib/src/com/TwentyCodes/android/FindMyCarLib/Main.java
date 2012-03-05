@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ import com.TwentyCodes.android.FindMyCarLib.debug.Debug;
 import com.TwentyCodes.android.SkyHook.SkyHookRegistration;
 import com.TwentyCodes.android.exception.ExceptionHandler;
 import com.TwentyCodes.android.location.OnDirectionSelectedListener;
+import com.TwentyCodes.android.location.ReverseGeocoder;
 import com.TwentyCodes.android.overlays.DirectionsOverlay;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
@@ -198,7 +200,43 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 		Log.d(TAG,"successfully registered new user");
 		mSettings.edit().putBoolean(Settings.IS_REGISTERED, true).commit();
 	}
-
+	
+	/**
+	 * called when a car is deleted
+	 * (non-Javadoc)
+	 * @see com.TwentyCodes.android.FindMyCarLib.UI.fragments.MapFragment.MapFragmentListener#onCarDeleted()
+	 */
+	@Override
+	public void onCarDeleted() {
+		mNotes.delete();
+		mDirectionsFragment.clear();
+	}
+	
+	/**
+	 * called when a new car is marked
+	 * (non-Javadoc)
+	 * @see com.TwentyCodes.android.FindMyCarLib.UI.fragments.MapFragment.MapFragmentListener#onCarMarked(com.google.android.maps.GeoPoint)
+	 */
+	@Override
+	public void onCarMarked(final GeoPoint point) {
+		new Thread( new Runnable(){
+			@Override
+			public void run(){
+				Location location = new Location("location");
+				location.setLatitude(point.getLatitudeE6() /1e6);
+				location.setLongitude(point.getLongitudeE6() /1e6);
+				
+				final String address = ReverseGeocoder.getAddressFromLocation(location);
+				runOnUiThread( new Runnable(){
+					@Override
+					public void run(){
+						mNotes.setAddressText(address);
+					}
+				});
+			}
+		}).start();
+	}
+	
 	@Override
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
@@ -294,6 +332,39 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 		mPager.setCurrentItem(1);
 		mIndicator.setCurrentItem(1);
 		mPager.setPagingEnabled(false);
+	}
+	
+	/**
+	 * called when directions are displayed
+	 * (non-Javadoc)
+	 * @see com.TwentyCodes.android.FindMyCarLib.UI.fragments.MapFragment.MapFragmentListener#onDirectionsDisplayed(java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, java.lang.String)
+	 */
+	@Override
+	public void onDirectionsDisplayed(final DirectionsOverlay directions) {
+		this.runOnUiThread(new Runnable(){
+			@Override
+			public void run(){
+				mDirectionsFragment.setDirections(directions);
+				mPager.setCurrentItem(2);
+				
+				mPager.setCurrentItem(0);
+				mIndicator.setCurrentItem(0);
+			}
+		});
+	}
+
+	/**
+	 * called when a direction is selected
+	 * (non-Javadoc)
+	 * @see com.TwentyCodes.android.location.DirectionsListFragment.OnDirectionSelectedListener#onDirectionSelected(com.google.android.maps.GeoPoint)
+	 */
+	@Override
+	public void onDirectionSelected(GeoPoint point) {
+		if(mMap != null) {
+			mMap.panToGeoPoint(point, true);
+			mPager.setCurrentItem(1);
+			mIndicator.setCurrentItem(1);
+		}
 	}
 	
 	
@@ -509,47 +580,5 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 		}
 	}
 	
-	/**
-	 * called when a car is deleted
-	 * (non-Javadoc)
-	 * @see com.TwentyCodes.android.FindMyCarLib.UI.fragments.MapFragment.MapFragmentListener#onCarDeleted()
-	 */
-	@Override
-	public void onCarDeleted() {
-		mNotes.delete();
-		mDirectionsFragment.clear();
-	}
 	
-	/**
-	 * called when directions are displayed
-	 * (non-Javadoc)
-	 * @see com.TwentyCodes.android.FindMyCarLib.UI.fragments.MapFragment.MapFragmentListener#onDirectionsDisplayed(java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, java.lang.String)
-	 */
-	@Override
-	public void onDirectionsDisplayed(final DirectionsOverlay directions) {
-		this.runOnUiThread(new Runnable(){
-			@Override
-			public void run(){
-				mDirectionsFragment.setDirections(directions);
-				mPager.setCurrentItem(2);
-				
-				mPager.setCurrentItem(0);
-				mIndicator.setCurrentItem(0);
-			}
-		});
-	}
-	
-	/**
-	 * called when a direction is selected
-	 * (non-Javadoc)
-	 * @see com.TwentyCodes.android.location.DirectionsListFragment.OnDirectionSelectedListener#onDirectionSelected(com.google.android.maps.GeoPoint)
-	 */
-	@Override
-	public void onDirectionSelected(GeoPoint point) {
-		if(mMap != null) {
-			mMap.panToGeoPoint(point, true);
-			mPager.setCurrentItem(1);
-			mIndicator.setCurrentItem(1);
-		}
-	}
 }

@@ -404,6 +404,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int stay_awake_off=0x7f05001d;
         public static final int stay_awake_on=0x7f05001c;
         public static final int stay_awake_pref=0x7f05000e;
+        public static final int store_your_notes_here=0x7f050077;
         public static final int the_vaule_was_not_a_number_update_interval_60=0x7f050053;
         public static final int timer_already_set=0x7f050040;
         public static final int timer_canceled=0x7f05004b;

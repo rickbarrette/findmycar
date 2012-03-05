@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
+        android:contentDescription="@string/my_location"
         android:src="@drawable/my_location_action_bar" />
 
     <ImageButton
@@ -19,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
+        android:contentDescription="@string/mark_car"
         android:src="@drawable/mark_my_location_action_bar" />
 
     <ImageButton
@@ -27,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
+        android:contentDescription="@string/show_both"
         android:src="@drawable/car_action_bar" />
 
     <ImageButton
@@ -35,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
+        android:contentDescription="@string/parking_timer"
         android:src="@drawable/time_action_bar" />
 
     <ImageButton
@@ -43,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
+        android:contentDescription="@string/directions"
         android:src="@drawable/nav_action_bar" />
 
 </LinearLayout>

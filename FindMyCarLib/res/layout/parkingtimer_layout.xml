@@ -59,7 +59,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="7dip"
             android:layout_marginTop="10dip"
-            android:paddingLeft="7px" />
+            android:paddingLeft="7dip" />
 
         <!-- textview to hold text after the checkbox "Notify me" -->
 
@@ -67,7 +67,7 @@
             android:id="@+id/tvNotify1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25px"
+            android:layout_marginTop="25dip"
             android:layout_toRightOf="@id/chNotify"
             android:gravity="center_vertical"
             android:text="@string/notify_me"
@@ -92,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dip"
-            android:layout_marginTop="17px"
+            android:layout_marginTop="17dip"
             android:layout_toRightOf="@id/etNotify"
             android:text="@string/before"
             android:textStyle="bold" />
@@ -112,7 +112,7 @@
 
         <Button
             android:id="@+id/btSetTimer"
-            android:layout_width="130px"
+            android:layout_width="130dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
@@ -121,7 +121,7 @@
 
         <Button
             android:id="@+id/btRemoveTimer"
-            android:layout_width="130px"
+            android:layout_width="130dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
