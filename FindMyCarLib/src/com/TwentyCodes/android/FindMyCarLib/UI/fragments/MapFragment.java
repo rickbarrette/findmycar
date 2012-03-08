@@ -41,7 +41,6 @@ import com.TwentyCodes.android.FindMyCarLib.UI.FindMyCarOverlay;
 import com.TwentyCodes.android.fragments.SkyHoookUserOverlayMapFragment;
 import com.TwentyCodes.android.location.GeoPointLocationListener;
 import com.TwentyCodes.android.location.GeoUtils;
-import com.TwentyCodes.android.location.MapView;
 import com.TwentyCodes.android.location.MidPoint;
 import com.TwentyCodes.android.overlays.DirectionsOverlay;
 import com.TwentyCodes.android.overlays.DirectionsOverlay.OnDirectionsCompleteListener;
@@ -161,9 +160,9 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 		return true;
 	}
 
-	public MapView getMap() {
-		return mMap.getMap();
-	}
+//	public MapView getMap() {
+//		return mMap.getMap();
+//	}
 
 	/**
 	 * loads saved settings from files
@@ -287,10 +286,11 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 		View view = inflater.inflate(R.layout.map, container, false);
 
 		mMap = (SkyHoookUserOverlayMapFragment) getFragmentManager().findFragmentById(R.id.map_fragment);
+		mMap.setGeoPointLocationListener(this);
 		setUiHandler();
 
-		mAccuracy = (TextView) view.findViewById(R.id.tvAccuracy2);
-		mDistance = (TextView) view.findViewById(R.id.tvDistance2);
+		mAccuracy = (TextView) view.findViewById(R.id.tvAccuracy);
+		mDistance = (TextView) view.findViewById(R.id.tvDistance);
 		mSettings = getActivity().getSharedPreferences(Settings.SETTINGS, Context.MODE_WORLD_WRITEABLE);
 
 		view.findViewById(R.id.my_location).setOnClickListener(this);
@@ -329,11 +329,14 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 		mHandler.post(new Runnable() {
 			@Override
 			public void run() {
+				
+//				mAccuracy.setText(GeoUtils.distanceToString((accuracy / 1E3), isMetric));
 				mHandler.sendMessage(mHandler.obtainMessage(ACCURACY, GeoUtils.distanceToString((accuracy / 1E3), isMetric)));
 
 				if (mCarPoint != null && point != null) {
 					double distance = GeoUtils.distanceKm(point, mCarPoint);
 					mHandler.sendMessage(mHandler.obtainMessage(DISTANCE, GeoUtils.distanceToString(distance, isMetric)));
+//					mDistance.setText(GeoUtils.distanceToString(distance, isMetric));
 
 					// value is set in KM. if user has gone 30 feet from car app
 					// is set to check for arrival

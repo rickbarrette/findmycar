@@ -1,39 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#505050"
-    android:orientation="vertical" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
     <include
-        android:id="@+id/table"
+        android:id="@+id/distancebar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        layout="@layout/distancebar" />
+        layout="@layout/distancebar" >
+    </include>
 
     <fragment
         android:id="@+id/map_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/buttons"
+        android:layout_below="@id/distancebar"
         class="com.TwentyCodes.android.fragments.SkyHoookUserOverlayMapFragment" >
-
-        <!-- Preview: layout=@layout/map_fragment -->
     </fragment>
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@id/map_fragment"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/table" />
-
     <TextView
-        android:id="@+id/tvAccuracy2"
+        android:id="@+id/tvAccuracy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/table"
+        android:layout_below="@id/distancebar"
         android:layout_marginRight="10dip"
         android:layout_marginTop="10dip"
         android:enabled="false"
@@ -42,7 +34,7 @@
         android:textStyle="bold" />
 
     <include
-        android:id="@+id/buttons"
+        android:id="@id/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
