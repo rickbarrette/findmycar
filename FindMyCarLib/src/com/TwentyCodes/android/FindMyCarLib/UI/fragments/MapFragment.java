@@ -160,10 +160,6 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 		return true;
 	}
 
-//	public MapView getMap() {
-//		return mMap.getMap();
-//	}
-
 	/**
 	 * loads saved settings from files
 	 * 
@@ -330,13 +326,11 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 			@Override
 			public void run() {
 				
-//				mAccuracy.setText(GeoUtils.distanceToString((accuracy / 1E3), isMetric));
 				mHandler.sendMessage(mHandler.obtainMessage(ACCURACY, GeoUtils.distanceToString((accuracy / 1E3), isMetric)));
 
 				if (mCarPoint != null && point != null) {
 					double distance = GeoUtils.distanceKm(point, mCarPoint);
 					mHandler.sendMessage(mHandler.obtainMessage(DISTANCE, GeoUtils.distanceToString(distance, isMetric)));
-//					mDistance.setText(GeoUtils.distanceToString(distance, isMetric));
 
 					// value is set in KM. if user has gone 30 feet from car app
 					// is set to check for arrival
@@ -384,6 +378,8 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 	@Override
 	public void onResume() {
 		loadSettings();
+		if(mMap != null)
+			mMap.enableGPSProgess();
 		super.onResume();
 	}
 
@@ -404,20 +400,6 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 		mMap.getMap().getOverlays().add(mCarOverlay);
 		mMap.setDestination(mCarPoint);
 	}
-
-//	/**
-//	 * enables the GPS dialog
-//	 * 
-//	 * @param b
-//	 * @author ricky barrette
-//	 */
-//	public void setGPSDialogEnabled(boolean b) {
-//		if (mMap != null)
-//			if (b)
-//				mMap.enableGPSDialog();
-//			else
-//				mMap.disableGPSDialog();
-//	}
 
 	/**
 	 * Sets up the UI handler. The UI handler will process messages from
@@ -513,8 +495,6 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 						}).start();
 
 					}
-					// else
-					// isShowingBoth = false;
 
 				} else {
 					Log.e(TAG, "showBoth.mMap.getMap() is null");
@@ -698,4 +678,10 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 			mMap.getMap().setSatellite(!mMap.getMap().isSatellite());
 	}
 
+	@Override
+	public void onFirstFix(boolean isFirstFix) {
+		if(mMap != null)
+			if(isFirstFix)
+				mMap.disableGPSProgess();
+	}
 }
