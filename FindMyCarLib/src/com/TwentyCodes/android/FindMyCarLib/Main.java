@@ -26,8 +26,10 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.TwentyCodes.android.FindMyCarLib.UI.CustomViewPager;
 import com.TwentyCodes.android.FindMyCarLib.UI.fragments.DirectionsListFragment;
@@ -53,7 +55,7 @@ import com.skyhookwireless.wps.WPSReturnCode;
  * This is the Main Activity of FMC Full & Lite
  * @author ricky barrette
  */
-public class Main extends FragmentActivity implements RegistrationCallback, MapFragmentListener, OnDirectionSelectedListener {
+public class Main extends FragmentActivity implements RegistrationCallback, MapFragmentListener, OnDirectionSelectedListener, OnPageChangeListener {
 
 	private static final String SPLASH = "splash";
 	private static final String TAG = "Main";
@@ -332,6 +334,8 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 		mPager.setCurrentItem(1);
 		mIndicator.setCurrentItem(1);
 		mPager.setPagingEnabled(false);
+		
+		mIndicator.setOnPageChangeListener(this);
 	}
 	
 	/**
@@ -578,6 +582,28 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * called when the pager's page is changed
+	 * we use this to dismiss the soft keyboard
+	 * (non-Javadoc)
+	 * @see android.support.v4.view.ViewPager.OnPageChangeListener#onPageScrollStateChanged(int)
+	 */
+	@Override
+	public void onPageScrollStateChanged(int arg0) {
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(mPager.getWindowToken(), 0);
+	}
+	@Override
+	public void onPageScrolled(int arg0, float arg1, int arg2) {
+		// unused
+		
+	}
+	@Override
+	public void onPageSelected(int arg0) {
+		// unused
+		
 	}
 	
 	
