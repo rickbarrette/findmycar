@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="com.admob.android.ads.AdView">
-        <attr format="color" name="backgroundColor" />
-        <attr format="color" name="primaryTextColor" />
-        <attr format="color" name="secondaryTextColor" />
-        <attr format="string" name="keywords" />
-        <attr format="integer" name="refreshInterval" />
-    </declare-styleable>
-
     <!--
      Copyright (C) 2011 Patrik Åkerfeldt
      Copyright (C) 2011 Jake Wharton
