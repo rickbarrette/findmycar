@@ -145,6 +145,7 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 		mCarPoint = null;
 		mDistance.setText("0");
 		mSettings.edit().remove(Settings.LAT).remove(Settings.LON).commit();
+		mMap.setDestination(null);
 		if (mListener != null)
 			mListener.onCarDeleted();
 		if (mDirections != null) {
