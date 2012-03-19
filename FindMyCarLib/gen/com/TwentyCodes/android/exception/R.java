@@ -193,47 +193,47 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static int user_arrow_animation_3=0x7f02001f;
     }
     public static final class id {
-        public static int TextView01=0x7f070008;
-        public static int TextView02=0x7f070009;
-        public static int ad=0x7f07000a;
+        public static int TextView01=0x7f07000a;
+        public static int TextView02=0x7f07000b;
+        public static int ad=0x7f07000c;
         public static int btRemoveTimer=0x7f070023;
         public static int btSetTimer=0x7f070022;
-        public static int buttons=0x7f07000f;
+        public static int buttons=0x7f070011;
         public static int chNotify=0x7f07001d;
         public static int delete_car=0x7f070029;
-        public static int description=0x7f070005;
-        public static int directions=0x7f070015;
+        public static int description=0x7f070007;
+        public static int directions=0x7f070017;
         public static int distance_background=0x7f070027;
-        public static int distancebar=0x7f07000d;
+        public static int distancebar=0x7f07000f;
         public static int editText=0x7f070019;
         public static int etNotify=0x7f07001f;
-        public static int exception_text=0x7f070007;
-        public static int exception_title=0x7f070006;
-        public static int indicator=0x7f07000b;
+        public static int exception_text=0x7f070009;
+        public static int exception_title=0x7f070008;
+        public static int indicator=0x7f07000d;
         public static int llButtons=0x7f070021;
-        public static int mapProgressBar=0x7f070017;
-        public static int map_fragment=0x7f07000e;
+        public static int mapProgressBar=0x7f070004;
+        public static int map_fragment=0x7f070010;
         public static int map_mode=0x7f070028;
-        public static int mapview=0x7f070016;
-        public static int mark_my_location=0x7f070012;
-        public static int my_location=0x7f070011;
+        public static int mapview=0x7f070003;
+        public static int mark_my_location=0x7f070014;
+        public static int my_location=0x7f070013;
         public static int none=0x7f070000;
         public static int notiyfyme=0x7f07001c;
-        public static int pager=0x7f07000c;
-        public static int parking_timer=0x7f070014;
+        public static int pager=0x7f07000e;
+        public static int parking_timer=0x7f070016;
         public static int pickerlayout=0x7f07001a;
-        public static int send=0x7f070004;
+        public static int send=0x7f070006;
         public static int settings=0x7f07002a;
-        public static int show_both=0x7f070013;
+        public static int show_both=0x7f070015;
         public static int skyhook_img=0x7f070024;
         public static int tc_img=0x7f070026;
         public static int text=0x7f070025;
         public static int tpParkingTimerTimePicker=0x7f07001b;
         public static int triangle=0x7f070001;
-        public static int tvAccuracy=0x7f070010;
+        public static int tvAccuracy=0x7f070012;
         public static int tvAddress=0x7f070018;
         public static int tvBefore=0x7f070020;
-        public static int tvDistance=0x7f070003;
+        public static int tvDistance=0x7f070005;
         public static int tvNotify1=0x7f07001e;
         public static int underline=0x7f070002;
     }
@@ -241,16 +241,16 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static int default_title_indicator_footer_indicator_style=0x7f0a0000;
     }
     public static final class layout {
-        public static int distancebar=0x7f030000;
-        public static int exception_activity=0x7f030001;
-        public static int exception_list_item=0x7f030002;
-        public static int list=0x7f030003;
-        public static int list_row=0x7f030004;
-        public static int listview=0x7f030005;
-        public static int main=0x7f030006;
-        public static int map=0x7f030007;
-        public static int map_buttons=0x7f030008;
-        public static int map_fragment=0x7f030009;
+        public static int base_map_fragment=0x7f030000;
+        public static int distancebar=0x7f030001;
+        public static int exception_activity=0x7f030002;
+        public static int exception_list_item=0x7f030003;
+        public static int list=0x7f030004;
+        public static int list_row=0x7f030005;
+        public static int listview=0x7f030006;
+        public static int main=0x7f030007;
+        public static int map=0x7f030008;
+        public static int map_buttons=0x7f030009;
         public static int notes=0x7f03000a;
         public static int parking_timer_activity=0x7f03000b;
         public static int parkingtimer_layout=0x7f03000c;
@@ -387,6 +387,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class style {
         public static int CustomTitlePageIndicator=0x7f0c0001;
+        /**  Any customizations for your app running on pre-3.0 devices here 
+         */
+        public static int MyTheme=0x7f0c0004;
         public static int StyledIndicators=0x7f0c0000;
         /**  Copyright (C) 2011 Jake Wharton Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. 
          */

@@ -8,7 +8,6 @@ package com.TwentyCodes.android.FindMyCarLib.UI.fragments;
 
 import com.TwentyCodes.android.FindMyCarLib.Main;
 import com.TwentyCodes.android.FindMyCarLib.R;
-import com.TwentyCodes.android.location.OnDirectionSelectedListener;
 
 /**
  * This is our direction's list fragment.

@@ -39,7 +39,7 @@ import com.TwentyCodes.android.FindMyCarLib.UI.fragments.NotesFragment;
 import com.TwentyCodes.android.FindMyCarLib.debug.Debug;
 import com.TwentyCodes.android.SkyHook.SkyHookRegistration;
 import com.TwentyCodes.android.exception.ExceptionHandler;
-import com.TwentyCodes.android.location.OnDirectionSelectedListener;
+import com.TwentyCodes.android.fragments.DirectionsListFragment.OnDirectionSelectedListener;
 import com.TwentyCodes.android.location.ReverseGeocoder;
 import com.TwentyCodes.android.overlays.DirectionsOverlay;
 import com.google.ads.AdRequest;
@@ -55,7 +55,7 @@ import com.skyhookwireless.wps.WPSReturnCode;
  * This is the Main Activity of FMC Full & Lite
  * @author ricky barrette
  */
-public class Main extends FragmentActivity implements RegistrationCallback, MapFragmentListener, OnDirectionSelectedListener, OnPageChangeListener {
+public class Main extends FragmentActivity implements RegistrationCallback, MapFragmentListener, OnPageChangeListener, OnDirectionSelectedListener {
 
 	private static final String SPLASH = "splash";
 	private static final String TAG = "Main";
@@ -132,9 +132,6 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 				 */
 				if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
 					enableGPSdialog(Main.this);
-//				else
-//					if(mMap != null)
-//						mMap.setGPSDialogEnabled(true);
 				
 				/*
 				 * the map is no longer needed, clear it from memory
@@ -267,14 +264,14 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 		} else {
 			showSplashScreen();
 			// Do your heavy loading here on a background thread
-			new Thread( new Runnable(){
-				@Override
-				public void run(){
+//			new Thread( new Runnable(){
+//				@Override
+//				public void run(){
 					//registers user with skyhook
 					new SkyHookRegistration(Main.this).registerNewUser(Main.this);
-					
-				}
-			}).start();
+//					
+//				}
+//			}).start();
 			
 			//remove  notification from notification bar 
 			NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -373,6 +370,30 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 	
 	
 	
+	@Override
+	public void onPageScrolled(int arg0, float arg1, int arg2) {
+		// unused
+		
+	}
+
+	/**
+	 * called when the pager's page is changed
+	 * we use this to dismiss the soft keyboard
+	 * (non-Javadoc)
+	 * @see android.support.v4.view.ViewPager.OnPageChangeListener#onPageScrollStateChanged(int)
+	 */
+	@Override
+	public void onPageScrollStateChanged(int arg0) {
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(mPager.getWindowToken(), 0);
+	}
+	
+	@Override
+	public void onPageSelected(int arg0) {
+		// unused
+		
+	}
+	
 	/**
 	 * called when the activity is going to be paused
 	 * we stop all location based services and release the wake lock if there is one
@@ -388,7 +409,7 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 		
 		super.onPause();
 	}
-
+	
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -413,7 +434,7 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 			icicle.getBoolean(SPLASH, mSplashDialog.isShowing());
 		super.onSaveInstanceState(icicle);
 	}
-	
+
 	/**
 	 * called when activity is stopped. lifecycle method.
 	 * @author wwpowers
@@ -430,6 +451,7 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 		
 	}
 	
+
 	/**
 	 * parses all old save files from 2.0.6b34 and older into shared_prefs file settings.xml . it will parse the following files
 	 * AppLat.txt ,
@@ -486,7 +508,7 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 		 */
 		return editor.commit();
 	}
-	
+
 	/**
 	 * displays a quit dialog
 	 * @since 0.0.2
@@ -507,7 +529,7 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 		});
 		builder.show();
 	}
-
+	
 	/**
 	 * Removes the Dialog that displays the splash screen
 	 */
@@ -517,14 +539,12 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 	        mSplashDialog = null;
 	    }
 	}
-	
-
 	/**
 	 * Shows the splash screen over the full Activity
 	 */
 	protected void showSplashScreen() {
 //		mMap.setGPSDialogEnabled(false);
-	    mSplashDialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar_Fullscreen);
+	    mSplashDialog = new Dialog(this, android.R.style.Theme_Translucent);
 	    mSplashDialog.setContentView(R.layout.powered_by_skyhook);
 	    mSplashDialog.setCancelable(false);
 	    mSplashDialog.show();
@@ -547,7 +567,6 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 	      }
 	    }, 2000);
 	}
-
 	/**
 	 * check to see if there was an update installed. if the update needs to do any upgrades, it will be done here
 	 * @author ricky barrette
@@ -574,37 +593,10 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 			if(mSettings.getInt(Settings.BUILD_NUMBER, 0) < build_number || Debug.FORCE_FIRSTBOOT_DIALOG){
 				displayWelcomeDialog();
 			} 
-//			else {
-//				mMap.setGPSDialogEnabled(true);
-//			}
 			
 			mSettings.edit().putInt(Settings.BUILD_NUMBER, build_number).commit();
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	/**
-	 * called when the pager's page is changed
-	 * we use this to dismiss the soft keyboard
-	 * (non-Javadoc)
-	 * @see android.support.v4.view.ViewPager.OnPageChangeListener#onPageScrollStateChanged(int)
-	 */
-	@Override
-	public void onPageScrollStateChanged(int arg0) {
-		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(mPager.getWindowToken(), 0);
-	}
-	@Override
-	public void onPageScrolled(int arg0, float arg1, int arg2) {
-		// unused
-		
-	}
-	@Override
-	public void onPageSelected(int arg0) {
-		// unused
-		
-	}
-	
-	
+	}	
 }
