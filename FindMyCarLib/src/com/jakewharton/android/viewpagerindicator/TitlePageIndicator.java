@@ -19,6 +19,8 @@ package com.jakewharton.android.viewpagerindicator;
 
 import java.util.ArrayList;
 
+import com.TwentyCodes.android.FindMyCarLib.R;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -36,7 +38,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import com.TwentyCodes.android.exception.R;
 
 /**
  * A TitlePageIndicator is a PageIndicator which displays the title of left view
