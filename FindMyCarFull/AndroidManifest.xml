@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:installLocation="auto"
     package="com.TwentyCodes.android.FindMyCarFull"
+    android:installLocation="auto"
     android:versionCode="200"
     android:versionName="4.0" >
 
@@ -27,14 +27,14 @@
 
     <application
         android:icon="@drawable/icon"
-        android:label="@string/app_name" >
+        android:label="@string/app_name"
+        android:theme="@style/MyTheme" >
         <uses-library android:name="com.google.android.maps" />
 
         <activity
             android:name="Main"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Light.NoTitleBar"
             android:uiOptions="splitActionBarWhenNarrow" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,9 +54,7 @@
             android:name="com.TwentyCodes.android.FindMyCarLib.ParkingTimerService"
             android:process=":parkingtimer" />
 
-        <activity
-            android:name="com.TwentyCodes.android.FindMyCarLib.Settings"
-            android:theme="@android:style/Theme.Light" />
+        <activity android:name="com.TwentyCodes.android.FindMyCarLib.Settings" />
         <activity
             android:name="com.TwentyCodes.android.exception.ExceptionReportActivity"
             android:configChanges="keyboard|keyboardHidden|orientation" />
@@ -65,7 +63,7 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
         <activity
             android:name="com.TwentyCodes.android.FindMyCarLib.ParkignTimerActivity"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/MyDialogTheme" />
 
         <service android:name="com.TwentyCodes.android.exception.ReportPostingService" />
     </application>

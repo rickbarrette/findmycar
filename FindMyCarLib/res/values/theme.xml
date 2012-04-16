@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="MyTheme" parent="@android:style/Theme">
-        <!-- Any customizations for your app running on pre-3.0 devices here -->
-    </style>
+    <!-- Any customizations for your app running on pre-3.0 devices here -->
+
+    <style name="MyTheme" parent="@android:style/Theme.Light.NoTitleBar"></style>
+
+    <style name="MyDialogTheme" parent="@android:style/Theme.Dialog"></style>
 
 </resources>
