@@ -387,7 +387,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class style {
         public static final int CustomTitlePageIndicator=0x7f0c0001;
+        public static final int MyDialogTheme=0x7f0c0005;
         /**  Any customizations for your app running on pre-3.0 devices here 
+ Any customizations for your app running on devices with Theme.Holo here 
          */
         public static final int MyTheme=0x7f0c0004;
         public static final int StyledIndicators=0x7f0c0000;
