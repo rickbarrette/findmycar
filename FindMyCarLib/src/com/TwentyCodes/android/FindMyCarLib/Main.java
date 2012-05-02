@@ -403,6 +403,8 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 	protected void onPause() {
 		Log.i(TAG,"onPause()");
 		
+		removeSplashScreen();
+		
 		//remove wake lock if it is enabled
 		if(mWakeLock.isHeld())
 			mWakeLock.release();
