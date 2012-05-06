@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.TwentyCodes.android.FindMyCarFull"
     android:installLocation="auto"
-    android:versionCode="233"
-    android:versionName="4.1" >
+    android:versionCode="238"
+    android:versionName="4.2" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
