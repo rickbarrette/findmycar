@@ -295,6 +295,8 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 		view.findViewById(R.id.show_both).setOnClickListener(this);
 		view.findViewById(R.id.parking_timer).setOnClickListener(this);
 		view.findViewById(R.id.directions).setOnClickListener(this);
+		
+		this.mMap.setBuiltInZoomControls(true);
 		return view;
 	}
 
