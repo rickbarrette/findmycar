@@ -1,0 +1,6 @@
+[submodule "exception_handler_library"]
+	path = exception_handler_library
+	url = ssh://dev/srv/git/exception_handler_library.git
+[submodule "location_library"]
+	path = location_library
+	url = ssh://dev/srv/git/location_library.git

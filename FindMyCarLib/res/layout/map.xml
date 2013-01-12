@@ -17,7 +17,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/buttons"
         android:layout_below="@id/distancebar"
-        class="com.TwentyCodes.android.fragments.SkyHoookUserOverlayMapFragment" >
+        class="com.TwentyCodes.android.fragments.UserOverlayMapFragment" >
     </fragment>
 
     <TextView

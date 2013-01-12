@@ -38,7 +38,7 @@ import com.TwentyCodes.android.FindMyCarLib.ParkignTimerActivity;
 import com.TwentyCodes.android.FindMyCarLib.R;
 import com.TwentyCodes.android.FindMyCarLib.Settings;
 import com.TwentyCodes.android.FindMyCarLib.UI.FindMyCarOverlay;
-import com.TwentyCodes.android.fragments.SkyHoookUserOverlayMapFragment;
+import com.TwentyCodes.android.fragments.UserOverlayMapFragment;
 import com.TwentyCodes.android.location.GeoPointLocationListener;
 import com.TwentyCodes.android.location.GeoUtils;
 import com.TwentyCodes.android.location.MidPoint;
@@ -72,7 +72,7 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 	private ProgressDialog mProgress;
 	protected DirectionsOverlay mDirections;
 	private MapFragmentListener mListener;
-	private SkyHoookUserOverlayMapFragment mMap;
+	private UserOverlayMapFragment mMap;
 
 	/**
 	 * This listener will be used to notify it's parent about any changes tot eh map
@@ -282,7 +282,7 @@ public class MapFragment extends Fragment implements GeoPointLocationListener, O
 
 		View view = inflater.inflate(R.layout.map, container, false);
 
-		mMap = (SkyHoookUserOverlayMapFragment) getFragmentManager().findFragmentById(R.id.map_fragment);
+		mMap = (UserOverlayMapFragment) getFragmentManager().findFragmentById(R.id.map_fragment);
 		mMap.setGeoPointLocationListener(this);
 		setUiHandler();
 

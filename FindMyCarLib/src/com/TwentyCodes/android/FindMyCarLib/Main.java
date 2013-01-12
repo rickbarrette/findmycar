@@ -15,13 +15,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.support.v4.app.Fragment;
@@ -36,8 +33,6 @@ import com.TwentyCodes.android.FindMyCarLib.UI.fragments.DirectionsListFragment;
 import com.TwentyCodes.android.FindMyCarLib.UI.fragments.MapFragment;
 import com.TwentyCodes.android.FindMyCarLib.UI.fragments.MapFragment.MapFragmentListener;
 import com.TwentyCodes.android.FindMyCarLib.UI.fragments.NotesFragment;
-import com.TwentyCodes.android.FindMyCarLib.debug.Debug;
-import com.TwentyCodes.android.SkyHook.SkyHookRegistration;
 import com.TwentyCodes.android.exception.ExceptionHandler;
 import com.TwentyCodes.android.fragments.DirectionsListFragment.OnDirectionSelectedListener;
 import com.TwentyCodes.android.location.ReverseGeocoder;
@@ -47,15 +42,12 @@ import com.google.ads.AdView;
 import com.google.android.maps.GeoPoint;
 import com.jakewharton.android.viewpagerindicator.TitlePageIndicator;
 import com.jakewharton.android.viewpagerindicator.TitledFragmentAdapter;
-import com.skyhookwireless.wps.RegistrationCallback;
-import com.skyhookwireless.wps.WPSContinuation;
-import com.skyhookwireless.wps.WPSReturnCode;
 
 /**
  * This is the Main Activity of FMC Full & Lite
  * @author ricky barrette
  */
-public class Main extends FragmentActivity implements RegistrationCallback, MapFragmentListener, OnPageChangeListener, OnDirectionSelectedListener {
+public class Main extends FragmentActivity implements MapFragmentListener, OnPageChangeListener, OnDirectionSelectedListener {
 
 	private static final String SPLASH = "splash";
 	private static final String TAG = "Main";
@@ -143,16 +135,6 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 		
 	}
 	
-	/**
-	 * (non-Javadoc)
-	 * @see com.skyhookwireless.wps._sdkjc#done()
-	 * @author ricky barrette
-	 */
-	@Override
-	public void done() {
-		// UNUSED
-	}
-	
 //	/**
 //	 * displays lic dialog and welcome to find my car dialog
 //	 */
@@ -174,31 +156,6 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 //		)
 //		.show();
 //	}
-	
-	/**
-	 * (non-Javadoc)
-	 * @see com.skyhookwireless.wps._sdkjc#handleError(com.skyhookwireless.wps.WPSReturnCode)
-	 * @param arg0
-	 * @return
-	 * @author ricky barrette
-	 */
-	@Override
-	public WPSContinuation handleError(WPSReturnCode arg0) {
-		
-		Log.e(TAG,"there was an error regestering you "+ arg0.toString());
-		return WPSContinuation.WPS_CONTINUE;
-	}
-
-	/**
-	 * called when skyhook successfully registers a new user.
-	 * @see com.skyhookwireless.wps.RegistrationCallback#handleSuccess()
-	 * @author ricky barrette
-	 */
-	@Override
-	public void handleSuccess() {
-		Log.d(TAG,"successfully registered new user");
-		mSettings.edit().putBoolean(Settings.IS_REGISTERED, true).commit();
-	}
 	
 	/**
 	 * called when a car is deleted
@@ -253,26 +210,7 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 			ad.loadAd(new AdRequest());
 		}
 		
-		if(icicle != null){
-			if (icicle.containsKey(SPLASH)) 
-				// Show splash screen if still loading
-				if (icicle.getBoolean(SPLASH)) {
-					showSplashScreen();
-				}
-			
-			// Rebuild your UI with your saved state here
-		} else {
-			showSplashScreen();
-			// Do your heavy loading here on a background thread
-//			new Thread( new Runnable(){
-//				@Override
-//				public void run(){
-					//registers user with skyhook
-					new SkyHookRegistration(Main.this).registerNewUser(Main.this);
-//					
-//				}
-//			}).start();
-			
+		if(icicle == null){
 			//remove  notification from notification bar 
 			NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 			notificationManager.cancel(0);
@@ -453,64 +391,6 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 		
 	}
 	
-
-	/**
-	 * parses all old save files from 2.0.6b34 and older into shared_prefs file settings.xml . it will parse the following files
-	 * AppLat.txt ,
-	 * AppLon.txt ,
-	 * FirstBoot.txt ,
-	 * StayAwake.txt ,
-	 * Notes.txt ,
-	 * Address.txt , 
-	 * AppUnit.txt , & 
-	 * AppService.txt
-	 * @return true if files were committed successful to shared_prefs settings.xml
-	 * @author ricky barrette
-	 */
-	private boolean parseOldSaveFilesToSharedPrefs(){
-		/*
-		 * get the file stream class to read all old files
-		 * and get the editor for shared_prefs settings.xml
-		 */
-		FileStream fs = new FileStream(this);
-		Editor editor = mSettings.edit();
-		
-		/*
-		 * parse in the old files and save them
-		 */
-		editor.putInt(Settings.LAT, fs.readInteger("AppLat.txt"));
-		editor.putInt(Settings.LON, fs.readInteger("AppLon.txt"));
-		editor.putBoolean(Settings.STAY_AWAKE, fs.readBoolean("StayAwake.txt"));
-		
-		if(fs.readBoolean("AppUnit.txt")){
-			editor.putString(Settings.MEASUREMENT_UNIT, "Metric");
-		} else {
-			editor.putString(Settings.MEASUREMENT_UNIT, "Standard");
-		}
-		
-		editor.putBoolean(Settings.PARKING_TIMER_ALARM, fs.readBoolean("AppService.txt"));
-		editor.putBoolean(Settings.FIRST_BOOT, fs.readBoolean("FirstBoot.txt"));
-		editor.putString(Settings.NOTE, fs.readString("Notes.txt"));
-		editor.putString(Settings.ADDRESS, fs.readString("Address.txt"));
-	
-		/*
-		 * remove old files
-		 */
-		deleteFile("AppLat.txt");
-		deleteFile("AppLon.txt");
-		deleteFile("StayAwake.txt");
-		deleteFile("AppUnit.txt");
-		deleteFile("AppService.txt");
-		deleteFile("FirstBoot.txt");
-		deleteFile("Notes.txt");
-		deleteFile("Address.txt");
-		
-		/*
-		 * commit the changes
-		 */
-		return editor.commit();
-	}
-
 	/**
 	 * displays a quit dialog
 	 * @since 0.0.2
@@ -541,64 +421,5 @@ public class Main extends FragmentActivity implements RegistrationCallback, MapF
 	        mSplashDialog = null;
 	    }
 	}
-	/**
-	 * Shows the splash screen over the full Activity
-	 */
-	protected void showSplashScreen() {
-//		mMap.setGPSDialogEnabled(false);
-	    mSplashDialog = new Dialog(this, android.R.style.Theme_Translucent);
-	    mSplashDialog.setContentView(R.layout.powered_by_skyhook);
-	    mSplashDialog.setCancelable(false);
-	    mSplashDialog.show();
-	 
-	    // Set Runnable to remove splash screen just in case
-	    final Handler handler = new Handler();
-	    handler.postDelayed(new Runnable() {
-	      @Override
-	      public void run() {
-	        removeSplashScreen();
-	        
-	        /*
-	         * uncomment the following to display the eula
-	         */
-//	      //loads first boot dialog if this is the first boot
-//			if (! mSettings.getBoolean(Settings.ACCEPTED, false) || Debug.FORCE_FIRSTBOOT_DIALOG)
-//				eulaAlert();
-//			else
-				update();
-	      }
-	    }, 2000);
-	}
-	/**
-	 * check to see if there was an update installed. if the update needs to do any upgrades, it will be done here
-	 * @author ricky barrette
-	 */
-	private void update() {
-		
-		/*
-		 * get build number and compare to saved build number, then check to see if there is something we need to do
-		 */
-		try {
-			int build_number = this.getPackageManager().getPackageInfo(this.getPackageName(), 0).versionCode;
-		
-			/*
-			 * if there is no build number saved && there is a FirstBoot.txt file then update old save file system to shared_prefs
-			 */
-			if(mSettings.getInt(Settings.BUILD_NUMBER, 0) == 0 && new FileStream(this).readBoolean("FirstBoot.txt")){
-				Log.v(TAG, "updateding save files to shared_prefs");
-				parseOldSaveFilesToSharedPrefs();
-			}
-			
-			/*
-			 * if this is the first time running this build display welcome dialog
-			 */
-			if(mSettings.getInt(Settings.BUILD_NUMBER, 0) < build_number || Debug.FORCE_FIRSTBOOT_DIALOG){
-				displayWelcomeDialog();
-			} 
-			
-			mSettings.edit().putInt(Settings.BUILD_NUMBER, build_number).commit();
-		} catch (NameNotFoundException e) {
-			e.printStackTrace();
-		}
-	}	
+
 }
